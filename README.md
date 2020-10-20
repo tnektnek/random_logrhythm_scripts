@@ -1,1 +1,1 @@
-# random_logrhythm_scripts
+# Just a place to dump LogRhythm-related scripts
