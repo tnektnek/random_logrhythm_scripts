@@ -5,3 +5,7 @@
 
 $svc = @("lr-elasticsearch","LogRhythmServiceRegistry", "scsm")
 get-service -displayname logrhythm* | ? { $_.Status -eq 'Running' } | ? {$svc -notcontains $_.Name} | % { Stop-Service $_}
+
+
+# Post install just to make sure everything is started again; mediator won't run if a new license is required
+get-service -displayname logrhythm* | start-service
