@@ -1,0 +1,43 @@
+CREATE VIEW VW_LogRhythm_ePO_Incidents AS
+SELECT T1.IncidentId,
+T13.DisplayName as IncidentType,
+T1.ViolationLocalTime,
+T1.Severity AS Severity,
+T1.SourceApplicationTemplates AS SourceApp,
+T1.ActualAction AS Action,
+T8.Name AS Workstation_Name,
+T8.IP as Workstation_IP,
+T9.PolicyName AS Policy_Name,
+T1.RulesToDisplay AS Rules,
+T7.Username_NTLM AS username,
+T1.destination AS destination,
+T4.ApplicationFileName AS ApplicationFilename,
+T11.FileName AS FlaggedFilename,
+T11.FileExt AS FlaggedFileExtension,
+T11.MatchCount as MatchCount,
+T1.TotalContentSize AS Size,
+T5.DestinationURL AS Dest_URL,
+T6.Recipients AS Email_Recp,
+T6.RecipientsCc as Email_RecpCC,
+T6.RecipientsBcc as Email_RecpBCC,
+T7.PrimaryUserAccountID AS Acc_ID,
+T11.SHA1 AS SHA1,
+T10.copyDirection AS Direction,
+T1.JustificationText as JustificationText,
+T14.Name As JustificationTemplateName,
+T15.ButtonText as JustificationButtonLabel
+FROM ePO_EPO.dbo.udlp_Incidents AS T1
+LEFT JOIN ePO_EPO.dbo.UDLP_IncidentEmail AS T6 ON T1.IncidentId = T6.IncidentId
+LEFT JOIN ePO_EPO.dbo.UDLP_EventUsers AS T7 ON T1.UserId = T7.UserId
+LEFT JOIN ePO_EPO.dbo.UDLP_IncidentWebPost AS T5 ON T1.IncidentId = T5.IncidentId
+LEFT JOIN ePO_EPO.dbo.UDLP_EventPolicyInfo AS T9 ON T1.PolicyInfoId = T9.PolicyInfoId 
+LEFT JOIN ePO_EPO.dbo.UDLP_IncidentDevice AS T3 ON T1.IncidentId = T3.IncidentId
+LEFT JOIN ePO_EPO.dbo.UDLP_EventComputers AS T8 ON T1.ComputerID = T8.ID
+LEFT JOIN ePO_EPO.dbo.UDLP_IncidentApplications AS T4 ON T1.SourceApplicationId = T4.ApplicationId
+LEFT JOIN ePO_EPO.dbo.UDLP_Incidents_Archive AS T10 ON T1.IncidentId = T10.IncidentId
+LEFT JOIN ePO_EPO.dbo.UDLP_IncidentEvidences AS T11 ON T1.IncidentId = T11.IncidentId
+LEFT JOIN ePO_EPO.dbo.UDLP_JustificationOptions_en AS T12 on T1.JustificationOptionKey = T12.JustificationOptionKey
+LEFT JOIN ePO_EPO.dbo.DLP_EventType as T13 ON T1.IncidentType = T13.EventType
+LEFT JOIN ePO_EPO.dbo.UDLP_DEFINITIONS as T14 on T14.ItemID = T1.JustificationItemID
+LEFT JOIN ePO_EPO.dbo.UDLP_JustificationButtonLabels_en as T15 on T15.JustificationButtonLabelKey = T1.JustificationButtonLabelKey
+
