@@ -59,3 +59,13 @@ Sample Log:
 03 29 2021 19:01:39 10.1.121.6 <KERN:WARN> Mar 29 19:01:39 AOL-HQ-Q7004-01 kernel: [6078770.225562] Iptables: Block: IN=eth0 OUT= MAC=8:00 SRC=10.1.4.4 DST=10.1.1.6 LEN=60 TOS=0x00 PREC=0x00 TTL=64 ID=671 DF PROTO=TCP SPT=60504 DPT=135 WINDOW=14600 RES=0x00 SYN URGP=0 
 03 29 2021 19:59:01 10.13.121.140 <SLOG:INFO> Mar 29 19:59:01 AB-TAY-Q7248-01 syslog:  [origin software='rsyslogd' swVersion='8.33.0' x-pid='135' x-info='http://www.rsyslog.com'] rsyslogd was HUPed
 ```
+
+```
+## Canary LogRhythm MPE Regex
+MPE: Canary Catch All 
+Security : Suspicious Activity
+\<[^\:]+\:(?<severity>[^\>]+).*?eventid="(?<vmid>[^"]+)\"\s+(?:ReverseDNS="(?<sname>[^\"]+)\"\s+CanaryName="(?<dname>[^\"]+)\"\s+.*?Flock="(?<group>[^"]+)\"\s+CanaryIP="(?<dip>\d+\.\d+\.\d+\.\d+)\"\s+)?.*?SourceIP="(?<sip>\d+\.\d+\.\d+\.\d+)(?:.*?IncidentHash="(?<hash>[^"]+))?\".*?∩╗┐(?<vendorinfo>.*$)
+
+MPE: Canary Catch All Level 2
+\<[^\:]+\:(?<severity>[^\>]+).*?Kiwi_Syslog_Server\s+(?<vendorinfo>(?:.*?Canaries\s+\((?<dname>[^\)]+)\)\s+at\s+(?<dip>\d+\.\d+\.\d+\.\d+))?\.)
+```
