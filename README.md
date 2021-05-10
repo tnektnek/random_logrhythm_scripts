@@ -2,4 +2,4 @@
 
 Custom MPE Dumps found at mpedump.md
 
-Anything used should be at own risk and there's no support to be found.
+Anything used should be at one's own risk and there's no support to be found.
