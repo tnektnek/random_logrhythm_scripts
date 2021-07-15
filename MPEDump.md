@@ -62,10 +62,37 @@ Sample Log:
 
 ```
 ## Canary LogRhythm MPE Regex
-MPE: Canary Catch All 
-Security : Suspicious Activity
-\<[^\:]+\:(?<severity>[^\>]+).*?eventid="(?<vmid>[^"]+)\"\s+(?:ReverseDNS="(?<sname>[^\"]+)\"\s+CanaryName="(?<dname>[^\"]+)\"\s+.*?Flock="(?<group>[^"]+)\"\s+CanaryIP="(?<dip>\d+\.\d+\.\d+\.\d+)\"\s+)?.*?SourceIP="(?<sip>\d+\.\d+\.\d+\.\d+)(?:.*?IncidentHash="(?<hash>[^"]+))?\".*?∩╗┐(?<vendorinfo>.*$)
-
-MPE: Canary Catch All Level 2
-\<[^\:]+\:(?<severity>[^\>]+).*?Kiwi_Syslog_Server\s+(?<vendorinfo>(?:.*?Canaries\s+\((?<dname>[^\)]+)\)\s+at\s+(?<dip>\d+\.\d+\.\d+\.\d+))?\.)
+MPE: Canary Catch-All 
+eventid="(?<vmid>[^"]+)\"\s+(?:ReverseDNS="(?<sname>[^\"]+)\"\s+CanaryName="(?<dname>[^\"]+)\"\s+.*?Description="(?<subject>[^"]+)\".*?Flock="(?<group>[^"]+)\"\s+CanaryIP="(?<dip>\d+\.\d+\.\d+\.\d+)\"\s+)?.*?SourceIP="(?<sip>\d+\.\d+\.\d+\.\d+)(?:.*?IncidentHash="(?<hash>[^"]+))?\".*?AdditionalIncident.*?\](?<vendorinfo>.*$)
+    vmid="1004" - Canary Disconnected/Reconnected
+        Security : Activity : AIE : Honeypot : Activity
+    vmid="5007" - Consolidated Network Port Scan
+        Security : Reconnaissance : Port Scan
+    vmid="20001" - Custom TCP Service Request
+        Security : Activity : TCP Service Sweep
+    vmid="19001" - Git Repository Clone Attempt
+    vmid="5003" - Host Port Scan
+        Security : Reconnaissance : Port Scan
+    vmid="18001" - ModBus Request
+        Security : Activity : MODBUS Write Command
+    vmid="5005" - Nmap NULL Scan // vmid="5008" - Nmap FIN Scan // vmid="5004" - Nmap OS Scan // vmid="5006" - Nmap Xmas Scan
+        Security : Activity : Nmap OS Fingerprint
+    vmid="11011" - NTP Monlist Request
+    vmid="21001" - Redis Command
+    vmid="15001" - SIP Request
+        Security : Activity : SIP Detected
+    vmid="13001" - SNMP
+        Security : Activity : SNMP Activity
+    vmid="10001" - TFTP Requst
+        Security : Activity : Web TFTP Detected
+    vmid="12001" - VNC Login Attempt
+        Security : Activity : VNC Detected
+MPE: Canary Shared File Opened
+vmid="5005" - Shared File Opened
+    eventid="(?<vmid>5000)\"\s+(?:ReverseDNS="(?<sname>[^\"]+)\"\s+CanaryName="(?<dname>[^\"]+)\"\s+.*?Description="(?<subject>[^"]+)\".*?Flock="(?<group>[^"]+)\"\s+CanaryIP="(?<dip>\d+\.\d+\.\d+\.\d+)\"\s+)?.*?SourceIP="(?<sip>\d+\.\d+\.\d+\.\d+)(?:.*?IncidentHash="(?<hash>[^"]+))?\".*?AdditionalIncident(?:.*?Filename="(?<object>[^"]+)\")?.*?\](?<vendorinfo>.*$)
+        Operations : Information : File Opened
+MPE: Canary Authentication Attempt
+vmid="2000" - FTP Login Attempt // vmid="3001" - HTTP Login // vmid="7001" - HTTP Proxy Request // vmid="9001" - Microsoft SQL Server Login // vmid="8001" - MySQL Login // vmid="4002" - SSH (Password login) / SSH (key-based login) // vmid="6001" - Telnet Login Attempt
+    eventid="(?<vmid>2000|3001|7001|9001|8001|4002|6001)\"\s+(?:ReverseDNS="(?<sname>[^\"]+)\"\s+CanaryName="(?<dname>[^\"]+)\"\s+.*?Description="(?<subject>[^"]+)\".*?Flock="(?<group>[^"]+)\"\s+CanaryIP="(?<dip>\d+\.\d+\.\d+\.\d+)\"\s+)?.*?SourceIP="(?<sip>\d+\.\d+\.\d+\.\d+)(?:.*?IncidentHash="(?<hash>[^"]+))?\".*?AdditionalIncident.*?Username=\"(?<login>[^"]+)\"(?:.*?URL=\"(?<url>[^"]+)\")?(?:).*?User-Agent="(?<useragent>[^"]+)\")?(?:.*?Hostname="(?<dname>[^"]+)\")?\](?<vendorinfo>.*$)
+        Security : Activity : Authentication Attempt
 ```
