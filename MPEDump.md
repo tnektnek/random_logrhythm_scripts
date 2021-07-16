@@ -61,9 +61,8 @@ Sample Log:
 ```
 
 ```
-## Canary LogRhythm MPE Regex
 MPE: Canary Catch-All 
-eventid="(?<vmid>[^"]+)\"\s+(?:ReverseDNS="(?<sname>[^\"]+)\"\s+CanaryName="(?<dname>[^\"]+)\"\s+.*?Description="(?<subject>[^"]+)\".*?Flock="(?<group>[^"]+)\"\s+CanaryIP="(?<dip>\d+\.\d+\.\d+\.\d+)\"\s+)?.*?SourceIP="(?<sip>\d+\.\d+\.\d+\.\d+)(?:.*?IncidentHash="(?<hash>[^"]+))?\".*?AdditionalIncident.*?\](?<vendorinfo>.*$)
+eventid="(?<vmid>[^"]+)\"\s+(?:ReverseDNS="(?<sname>[^\"]+)\"\s+CanaryName="(?<dname>[^\"]+)\"\s+.*?Description="(?<subject>[^"]+)\".*?Flock="(?<group>[^"]+)\"\s+CanaryIP="(?<dip>\d+\.\d+\.\d+\.\d+)\"\s+)?.*?SourceIP="(?<sip>\d+\.\d+\.\d+\.\d+)(?:.*?IncidentHash="(?<hash>[^"]+))?\".*?AdditionalIncident.*?\]\s\S{3}(?<vendorinfo>.*$)
     vmid="1004" - Canary Disconnected/Reconnected
         Security : Activity : AIE : Honeypot : Activity
     vmid="5007" - Consolidated Network Port Scan
@@ -89,10 +88,14 @@ eventid="(?<vmid>[^"]+)\"\s+(?:ReverseDNS="(?<sname>[^\"]+)\"\s+CanaryName="(?<d
         Security : Activity : VNC Detected
 MPE: Canary Shared File Opened
 vmid="5005" - Shared File Opened
-    eventid="(?<vmid>5000)\"\s+(?:ReverseDNS="(?<sname>[^\"]+)\"\s+CanaryName="(?<dname>[^\"]+)\"\s+.*?Description="(?<subject>[^"]+)\".*?Flock="(?<group>[^"]+)\"\s+CanaryIP="(?<dip>\d+\.\d+\.\d+\.\d+)\"\s+)?.*?SourceIP="(?<sip>\d+\.\d+\.\d+\.\d+)(?:.*?IncidentHash="(?<hash>[^"]+))?\".*?AdditionalIncident(?:.*?Filename="(?<object>[^"]+)\")?.*?\](?<vendorinfo>.*$)
+    eventid="(?<vmid>5000)\"\s+(?:ReverseDNS="(?<sname>[^\"]+)\"\s+CanaryName="(?<dname>[^\"]+)\"\s+.*?Description="(?<subject>[^"]+)\".*?Flock="(?<group>[^"]+)\"\s+CanaryIP="(?<dip>\d+\.\d+\.\d+\.\d+)\"\s+)?.*?SourceIP="(?<sip>\d+\.\d+\.\d+\.\d+)(?:.*?IncidentHash="(?<hash>[^"]+))?\".*?AdditionalIncident(?:.*?Filename="(?<object>[^"]+)\")?.*?\]\s\S{3}(?<vendorinfo>.*$)
         Operations : Information : File Opened
 MPE: Canary Authentication Attempt
-vmid="2000" - FTP Login Attempt // vmid="3001" - HTTP Login // vmid="7001" - HTTP Proxy Request // vmid="9001" - Microsoft SQL Server Login // vmid="8001" - MySQL Login // vmid="4002" - SSH (Password login) / SSH (key-based login) // vmid="6001" - Telnet Login Attempt
-    eventid="(?<vmid>2000|3001|7001|9001|8001|4002|6001)\"\s+(?:ReverseDNS="(?<sname>[^\"]+)\"\s+CanaryName="(?<dname>[^\"]+)\"\s+.*?Description="(?<subject>[^"]+)\".*?Flock="(?<group>[^"]+)\"\s+CanaryIP="(?<dip>\d+\.\d+\.\d+\.\d+)\"\s+)?.*?SourceIP="(?<sip>\d+\.\d+\.\d+\.\d+)(?:.*?IncidentHash="(?<hash>[^"]+))?\".*?AdditionalIncident.*?Username=\"(?<login>[^"]+)\"(?:.*?URL=\"(?<url>[^"]+)\")?(?:).*?User-Agent="(?<useragent>[^"]+)\")?(?:.*?Hostname="(?<dname>[^"]+)\")?\](?<vendorinfo>.*$)
+vmid="2000" - FTP Login Attempt // vmid="3001" - HTTP Login // vmid="7001" - HTTP Proxy Request // vmid="9001" - Microsoft SQL Server Login // vmid="8001" - MySQL Login // vmid="4002" - SSH (Password login) / SSH (key-based login) // vmid="6001" - Telnet Login Attempt // vmid="28000" - Mongo Authentication Attempt
+    eventid="(?<vmid>2000|3001|7001|9001|8001|4002|6001)\"\s+(?:ReverseDNS="(?<sname>[^\"]+)\"\s+CanaryName="(?<dname>[^\"]+)\"\s+.*?Description="(?<subject>[^"]+)\".*?Flock="(?<group>[^"]+)\"\s+CanaryIP="(?<dip>\d+\.\d+\.\d+\.\d+)\"\s+)?.*?SourceIP="(?<sip>\d+\.\d+\.\d+\.\d+)(?:.*?IncidentHash="(?<hash>[^"]+))?\".*?AdditionalIncident.*?(?:Username|User)=\"(?<login>[^"]+)\"(?:.*?URL=\"(?<url>[^"]+)\")?(?:).*?User-Agent="(?<useragent>[^"]+)\")?.*?\]\s\S{3}(?<vendorinfo>.*$)
         Security : Activity : Authentication Attempt
+MPE: Canary Settings Changed
+vmid="23002" - Canary Settings Changed
+    eventid="(?<vmid>2000|3001|7001|9001|8001|4002|6001)\"\s+(?:ReverseDNS="(?<sname>[^\"]+)\"\s+CanaryName="(?<dname>[^\"]+)\"\s+.*?Description="(?<subject>[^"]+)\".*?Flock="(?<group>[^"]+)\"\s+CanaryIP="(?<dip>\d+\.\d+\.\d+\.\d+)\"\s+)?.*?SourceIP="(?<sip>\d+\.\d+\.\d+\.\d+)(?:.*?IncidentHash="(?<hash>[^"]+))?\".*?AdditionalIncident.*?Username=\"(?<login>[^"]+)\"(?:.*?URL=\"(?<url>[^"]+)\")?(?:).*?User-Agent="(?<useragent>[^"]+)\")?(?:.*?Hostname="(?<dname>[^"]+)\")?\]\s\S{3}(?<vendorinfo>.*$)
+        Operations : Information : Config Changed on Interface
 ```
